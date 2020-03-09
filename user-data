@@ -5,16 +5,20 @@ Install-WindowsFeature -name Web-Server -IncludeManagementTools
 cd \inetpub\wwwroot
 ## Delete IIS default html files
 remove-item iisstart.*
-## Grab IP info into variables
+## Grab Server info into variables
 $localipv4 = invoke-webrequest http://169.254.169.254/latest/meta-data/local-ipv4
 $publicipv4 = invoke-webrequest http://169.254.169.254/latest/meta-data/public-ipv4
 $publichostname = invoke-webrequest http://169.254.169.254/latest/meta-data/public-hostname
+$operatingsystem = (Get-CimInstance -ClassName Win32_OperatingSystem).Caption
 ## Create new index.html file
 New-Item index.html
 $filename = 'index.html'
 ## Write info to index.html
 Add-Content $filename "<br>"
 Add-Content $filename "<h2><b>Sysadmintutorials EC2 Windows Demo</b></h2>"
+Add-Content $filename "<b>Your Operating System is:</b> "
+Add-Content $filename $operatingsystem
+Add-Content $filename "<br>"
 Add-Content $filename "<b>Your Internal IP Address is:</b> "
 Add-Content $filename $localipv4.content
 Add-Content $filename "<br>"
