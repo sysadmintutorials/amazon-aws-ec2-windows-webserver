@@ -20,8 +20,10 @@ Add-Content $filename "<br>"
 Add-Content $filename "<h2><b>Sysadmintutorials EC2 Windows Demo</b></h2>"
 Add-Content $filename "<b>Your Server Hostname is:</b> "
 Add-Content $filename $hostname
+Add-Content $filename "<br>"
 Add-Content $filename "<b>Your Instance Type is:</b> "
 Add-Content $filename $instancetype
+Add-Content $filename "<br>"
 Add-Content $filename "<b>Your Internal IP Address is:</b> "
 Add-Content $filename $localipv4
 Add-Content $filename "<br>"
