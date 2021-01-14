@@ -12,6 +12,7 @@ $publichostname = invoke-restmethod -uri  http://169.254.169.254/latest/meta-dat
 ## Grab Server info into variables
 $hostname = hostname
 $instancetype = invoke-restmethod -uri  http://169.254.169.254/latest/meta-data/instance-type
+$operatingsystem = (Get-CimInstance -ClassName Win32_OperatingSystem).Caption
 ## Create new index.html file
 New-Item index.html
 $filename = 'index.html'
@@ -23,6 +24,9 @@ Add-Content $filename $hostname
 Add-Content $filename "<br>"
 Add-Content $filename "<b>Your Instance Type is:</b> "
 Add-Content $filename $instancetype
+Add-Content $filename "<br>"
+Add-Content $filename "<b>Your Operating System is:</b> "
+Add-Content $filename $operatingsystem
 Add-Content $filename "<br>"
 Add-Content $filename "<b>Your Internal IP Address is:</b> "
 Add-Content $filename $localipv4
